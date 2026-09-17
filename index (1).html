@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>Para ti</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<div class="vignette"></div>
+
+<div id="app">
+
+  <!-- ESCENA 1: INICIO -->
+  <section class="scene" id="scene-intro">
+    <div class="intro-text">
+      <p class="line line-1">Hoy no es un día cualquiera&hellip;</p>
+      <p class="line line-2">Hoy es tu día.</p>
+    </div>
+    <button class="btn-start" id="btn-comenzar">
+      <span class="btn-halo"></span>
+      <span class="btn-label"><span class="spark">✨</span> Comenzar</span>
+    </button>
+  </section>
+
+  <!-- ESCENA 2: LIBRO -->
+  <section class="scene" id="scene-book">
+    <div class="book-wrap">
+      <div class="book" id="book">
+        <div class="book-glow"></div>
+
+        <div class="book-pages">
+          <div class="page-texture"></div>
+          <div class="story-text" id="story-text">
+            <p>Hay días que merecen ser celebrados de una forma distinta.</p>
+            <p>Y este es uno de ellos.</p>
+            <p>Porque hoy no comienza solamente un nuevo año de tu vida&hellip;</p>
+            <p>también comienza una pequeña historia hecha especialmente para ti.</p>
+          </div>
+        </div>
+
+        <div class="book-cover" id="book-cover">
+          <div class="cover-face">
+            <span class="corner corner-tl">❧</span>
+            <span class="corner corner-tr">❧</span>
+            <span class="corner corner-bl">❧</span>
+            <span class="corner corner-br">❧</span>
+            <div class="cover-emblem">
+              <span class="cover-emblem-star">✦</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCENA 3: NOCHE — PERSONAJE, MENSAJE Y TORTA -->
+  <section class="scene" id="scene-night">
+
+    <div class="night-ground"></div>
+
+    <div class="character" id="character">
+      <svg viewBox="0 0 220 340" class="char-svg" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hairGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a2114"/>
+            <stop offset="100%" stop-color="#1b0f08"/>
+          </linearGradient>
+          <linearGradient id="dressGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1c4433"/>
+            <stop offset="100%" stop-color="#0e281e"/>
+          </linearGradient>
+          <linearGradient id="skinGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#d9a26f"/>
+            <stop offset="100%" stop-color="#c48a58"/>
+          </linearGradient>
+        </defs>
+
+        <ellipse cx="110" cy="326" rx="44" ry="7" class="char-shadow"/>
+
+        <!-- pierna trasera -->
+        <g class="char-leg char-leg-back" style="transform-origin:100px 224px;">
+          <rect x="93" y="224" width="14" height="60" rx="7" fill="#caa06e"/>
+          <ellipse cx="100" cy="286" rx="10" ry="6" fill="var(--gold)"/>
+        </g>
+
+        <g class="char-hair-back">
+          <path d="M110 58 C52 52, 36 145, 58 198 C67 218, 80 216, 84 200 C68 152, 76 88, 110 80 Z" fill="url(#hairGrad)"/>
+          <path d="M110 58 C168 52, 184 145, 162 198 C153 218, 140 216, 136 200 C152 152, 144 88, 110 80 Z" fill="url(#hairGrad)"/>
+        </g>
+
+        <g class="char-body-group">
+          <!-- brazo trasero (libre, se balancea) -->
+          <path class="char-arm-back" d="M96 156 C82 168, 76 184, 80 202" stroke="#caa06e" stroke-width="10" stroke-linecap="round" fill="none" style="transform-origin:96px 156px;"/>
+
+          <!-- vestido -->
+          <path d="M84 148 C84 132, 136 132, 136 148 L150 232 C150 246, 70 246, 70 232 Z" fill="url(#dressGrad)"/>
+          <path d="M70 232 C90 240, 130 240, 150 232 L148 238 C128 246, 92 246, 72 238 Z" fill="var(--gold-soft)" opacity="0.55"/>
+          <path d="M90 148 L130 148 L136 170 L84 170 Z" fill="var(--gold)" opacity="0.35"/>
+
+          <!-- brazo delantero (sostiene la bandeja) -->
+          <path class="char-arm-front" d="M130 158 C144 166, 150 178, 148 192" stroke="#d9a26f" stroke-width="10" stroke-linecap="round" fill="none"/>
+
+          <!-- cabeza -->
+          <circle cx="110" cy="108" r="33" fill="url(#skinGrad)"/>
+
+          <!-- orejas + aros -->
+          <circle cx="79" cy="112" r="4" fill="#c48a58"/>
+          <circle cx="141" cy="112" r="4" fill="#c48a58"/>
+          <circle class="char-earring" cx="79" cy="123" r="6" fill="none" stroke="var(--gold-soft)" stroke-width="2"/>
+          <circle class="char-earring" cx="141" cy="123" r="6" fill="none" stroke="var(--gold-soft)" stroke-width="2"/>
+
+          <!-- cejas -->
+          <path d="M90 96 C95 92, 103 92, 107 95" stroke="#3a2114" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path d="M113 95 C117 92, 125 92, 130 96" stroke="#3a2114" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+
+          <!-- ojos felices (cerrados, riendo) -->
+          <path d="M91 106 C95 101, 103 101, 107 106" stroke="#2a180e" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+          <path d="M113 106 C117 101, 125 101, 129 106" stroke="#2a180e" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+
+          <!-- mejillas -->
+          <ellipse cx="90" cy="118" rx="6" ry="4" fill="#e39a6b" opacity="0.45"/>
+          <ellipse cx="130" cy="118" rx="6" ry="4" fill="#e39a6b" opacity="0.45"/>
+
+          <!-- sonrisa amplia -->
+          <path d="M92 118 C98 132, 122 132, 128 118 C122 126, 98 126, 92 118 Z" fill="#8a3b2e"/>
+          <path d="M96 120 C101 127, 119 127, 124 120 C119 124, 101 124, 96 120 Z" fill="#fff8ec"/>
+
+          <!-- flequillo -->
+          <path class="char-hair-front" d="M75 100 C75 68, 145 68, 145 100 C145 80, 130 71, 110 71 C90 71, 75 80, 75 100 Z" fill="url(#hairGrad)"/>
+          <path d="M96 74 C90 86, 90 100, 96 110" stroke="#4a2c18" stroke-width="2.4" fill="none" opacity="0.5"/>
+          <path d="M124 74 C130 86, 130 100, 124 110" stroke="#4a2c18" stroke-width="2.4" fill="none" opacity="0.5"/>
+        </g>
+
+        <!-- pierna delantera -->
+        <g class="char-leg char-leg-front" style="transform-origin:120px 224px;">
+          <rect x="113" y="224" width="14" height="60" rx="7" fill="#d9a26f"/>
+          <ellipse cx="120" cy="286" rx="10" ry="6" fill="var(--gold-soft)"/>
+        </g>
+
+        <!-- bandeja con pastelito -->
+        <g class="char-cake" transform="translate(130 188)">
+          <ellipse cx="16" cy="18" rx="30" ry="6" fill="var(--gold-soft)" opacity="0.9"/>
+          <rect x="-2" y="-10" width="36" height="18" rx="4" fill="#f6ecd6"/>
+          <rect x="-2" y="-10" width="36" height="5" rx="2.5" fill="#fff7e6"/>
+          <g class="mini-flame">
+            <rect x="14" y="-18" width="2" height="7" fill="var(--gold)"/>
+            <path d="M15 -20 C12.5 -24, 12.5 -27, 15 -31 C17.5 -27, 17.5 -24, 15 -20 Z" fill="var(--flame)"/>
+          </g>
+        </g>
+      </svg>
+
+      <div class="char-sparkle-anchor" id="char-sparkle-anchor"></div>
+    </div>
+
+    <div class="scene-message" id="scene-message">
+      <p class="msg-title">Feliz cumpleaños <span class="heart">❤️</span></p>
+      <p class="msg-sub">Esta celebración es para ti.</p>
+    </div>
+
+    <div class="hint-text" id="hint-text">Toca cada vela para apagarla</div>
+
+    <!-- PASTEL GRANDE INTERACTIVO -->
+    <div class="cake-wrap" id="cake-wrap">
+      <div class="candles" id="candles"><!-- generadas por JS --></div>
+      <div class="cake-big">
+        <div class="cake-tier cake-tier-top">
+          <span class="cake-ornament orn-1">✦</span>
+          <span class="cake-ornament orn-2">❀</span>
+          <span class="cake-ornament orn-3">✦</span>
+          <div class="cake-piping"></div>
+        </div>
+        <div class="cake-tier cake-tier-bottom">
+          <div class="cake-ribbon"></div>
+          <div class="cake-piping cake-piping-2"></div>
+        </div>
+        <div class="cake-plate"></div>
+      </div>
+    </div>
+
+    <button class="btn-continue" id="btn-continue">Continuar</button>
+
+  </section>
+
+  <!-- ESCENA 4: CARTA -->
+  <section class="scene" id="scene-letter">
+    <div class="card-wrap" id="card-wrap">
+      <div class="card-object">
+        <span class="corner corner-tl">❧</span>
+        <span class="corner corner-tr">❧</span>
+        <span class="corner corner-bl">❧</span>
+        <span class="corner corner-br">❧</span>
+        <div class="card-shine"></div>
+        <span class="card-ornament">✦</span>
+        <p class="card-label">Para ti</p>
+      </div>
+      <button class="btn-letter" id="btn-abrir-carta">💌 Abrir mi carta</button>
+    </div>
+
+    <div class="letter-page" id="letter-page">
+      <div class="letter-paper">
+        <span class="letter-deco letter-deco-top">✦ ❧ ✦</span>
+        <div class="letter-body" id="letter-body"><!-- generado por JS --></div>
+        <span class="letter-deco letter-deco-bottom">✦</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
